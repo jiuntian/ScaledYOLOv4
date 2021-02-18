@@ -421,7 +421,7 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
                     ne += 1  # print('empty labels for image %s' % self.img_files[i])  # file empty
                     # os.system("rm '%s' '%s'" % (self.img_files[i], self.label_files[i]))  # remove
             except Exception as e:
-                print(f'{prefix}WARNING: Ignoring corrupted image and/or label {im_file}: {e}')
+                print(f'WARNING: Ignoring corrupted image and/or label {self.img_files[i]}: {e}')
             pbar.desc = 'Scanning labels %s (%g found, %g missing, %g empty, %g duplicate, for %g images)' % (
                 cache_path, nf, nm, ne, nd, n)
         if nf == 0:
@@ -433,7 +433,9 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
         self.imgs = [None] * n
         if cache_images:
             gb = 0  # Gigabytes of cached images
-            pbar = tqdm(range(len(self.img_files)), desc='Caching images')
+            pbar = tqdm(range(len(self.
+                                 
+                                 )), desc='Caching images')
             self.img_hw0, self.img_hw = [None] * n, [None] * n
             for i in pbar:  # max 10k images
                 self.imgs[i], self.img_hw0[i], self.img_hw[i] = load_image(self, i)  # img, hw_original, hw_resized
