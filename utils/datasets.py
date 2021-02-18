@@ -433,9 +433,7 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
         self.imgs = [None] * n
         if cache_images:
             gb = 0  # Gigabytes of cached images
-            pbar = tqdm(range(len(self.
-                                 
-                                 )), desc='Caching images')
+            ppbar = tqdm(range(len(self.img_files)), desc='Caching images')
             self.img_hw0, self.img_hw = [None] * n, [None] * n
             for i in pbar:  # max 10k images
                 self.imgs[i], self.img_hw0[i], self.img_hw[i] = load_image(self, i)  # img, hw_original, hw_resized
