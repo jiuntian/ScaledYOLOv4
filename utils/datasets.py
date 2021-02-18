@@ -380,7 +380,7 @@ class LoadImagesAndLabels(Dataset):  # for training/testing
                 assert (l >= 0).all(), 'negative labels: %s' % file
                 if not (l[:, 1:] <= 1).all():
                     print('non-normalized or out of bounds coordinate labels: %s, skip' % file
-                    pass
+                    continue
 #                 assert (l[:, 1:] <= 1).all(), 'non-normalized or out of bounds coordinate labels: %s' % file
                 if np.unique(l, axis=0).shape[0] < l.shape[0]:  # duplicate rows
                     nd += 1  # print('WARNING: duplicate rows in %s' % self.label_files[i])  # duplicate rows
